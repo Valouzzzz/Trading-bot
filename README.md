@@ -1,9 +1,17 @@
-# Trading-bot
+# Trading Bot
 
-Ce projet est un bot qui permet d'analyser via des indicateur (tel que l'EMA ou le SMA) les changements du prix d'une action boursiere pour determiner si il faut vendre ou acheter.
-Le bot n'est pas terminer et ne fonctionne pas avec du vrai argent.
-Les conseilles qu'il donne sont enregistrer dans un fichier CSV aillant pour nom bot1_{la date}.
+Ce projet est un bot de trading automatisé qui utilise des indicateurs techniques, à savoir la Moyenne Mobile Exponentielle (EMA) et la Moyenne Mobile Simple (SMA), pour prendre des décisions de trading. Le bot est codé en Python et utilise les bibliothèques `numpy`, `yfinance`, `pandas`, et `ta`.
 
-Les objectif sont :
-  1- que le bot soit plus fiable
-  2- qu'il soit utilisable sur un raspberry pi 
+## Fonctionnalités
+
+- **Récupération des données financières** : Utilisation de `yfinance` pour obtenir les données historiques des prix des actions.
+- **Calcul des indicateurs techniques** : Utilisation des bibliothèques `numpy`, `pandas`, et `ta` pour calculer les EMA et SMA.
+- **Génération de signaux de trading** : Création de signaux d'achat et de vente basés sur les croisements des EMA et SMA.
+- **Exécution des trades** : Mise en œuvre de la logique de trading basée sur les signaux générés.
+
+## Prérequis
+
+Avant de commencer, assurez-vous d'avoir installé les bibliothèques suivantes :
+
+```bash
+pip install numpy yfinance pandas ta
