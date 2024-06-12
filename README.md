@@ -23,4 +23,5 @@ Ce projet est un bot de trading automatisé qui utilise des indicateurs techniqu
 Avant de commencer, assurez-vous d'avoir installé les bibliothèques suivantes :
 
 ```bash
-pip install yfinance pandas ta datetime```
+pip install yfinance pandas ta datetime
+```
