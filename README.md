@@ -12,7 +12,7 @@ Ce projet est un bot de trading automatisé qui utilise des indicateurs techniqu
 - **Exécution des trades** : Mise en œuvre de la logique de trading basée sur les signaux générés.
 
 
-## Objectifs :
+## Objectifs 
 
 - **Amelioration** : rajouter de meilleur signaux pour le rendre plus fiable.
 - **Fonctionnelle** : Créer une version fonctionnelle avec du vrai argent.
