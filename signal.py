@@ -3,82 +3,82 @@ import pandas as pd
 import time
 from datetime import datetime
 
-# Paramètres du bot
+# Bot Settings
 symbol = "CAL.L"
 sma_period = 20
 ema_period = 20
 rsi_period = 14
 bollinger_period = 20
 
-# Fonction pour obtenir les données historiques et calculer les indicateurs
+# Function to obtain historical data and calculate indicators
 def get_data_with_indicators(symbol):
     data = yf.download(symbol, period='1d', interval='1m')
 
-    # Calculer la SMA
+    # Calculate the SMA
     data['SMA_20'] = data['Close'].rolling(window=sma_period).mean()
 
-    # Calculer l'EMA
+    # Calculate the EMA
     data['EMA_20'] = data['Close'].ewm(span=ema_period, adjust=False).mean()
 
-    # Calculer le RSI
+    # Calculate the RSI
     delta = data['Close'].diff(1)
     gain = (delta.where(delta > 0, 0)).rolling(window=rsi_period).mean()
     loss = (-delta.where(delta < 0, 0)).rolling(window=rsi_period).mean()
     RS = gain / loss
     data['RSI_14'] = 100 - (100 / (1 + RS))
 
-    # Calculer les Bollinger Bands
+    # Calculate the Bollinger Bands
     data['BB_upper'] = data['Close'].rolling(window=bollinger_period).mean() + 2 * data['Close'].rolling(window=bollinger_period).std()
     data['BB_lower'] = data['Close'].rolling(window=bollinger_period).mean() - 2 * data['Close'].rolling(window=bollinger_period).std()
 
     return data
 
-# Fonction pour générer des signaux de trading
+# Function for generating trading signals
 def generate_signals(data):
     latest_data = data.iloc[-1]
 
     signals = {
-        'achat': False,
-        'vente': False,
-        'conserver': True
+        'buy': False,
+        'sell': False,
+        'hold': True
     }
 
-    # Critères SMA et EMA
+    # Criteria SMA and EMA
     if latest_data['Close'] > latest_data['EMA_20']:
-        signals['achat'] = True
-        signals['vente'] = False
+        signals['buy'] = True
+        signals['sell'] = False
     elif latest_data['Close'] < latest_data['EMA_20']:
-        signals['achat'] = False
-        signals['vente'] = True
+        signals['buy'] = False
+        signals['sell'] = True
 
-    # Critères RSI
+    # Criteria RSI
     if latest_data['RSI_14'] < 30:
-        signals['achat'] = True
-        signals['vente'] = False
+        signals['buy'] = True
+        signals['sell'] = False
     elif latest_data['RSI_14'] > 70:
-        signals['achat'] = False
-        signals['vente'] = True
+        signals['buy'] = False
+        signals['sell'] = True
 
-    # Critères Bollinger Bands
+    # Criteria Bollinger Bands
     if latest_data['Close'] < latest_data['BB_lower']:
-        signals['achat'] = True
-        signals['vente'] = False
+        signals['buy'] = True
+        signals['sell'] = False
     elif latest_data['Close'] > latest_data['BB_upper']:
-        signals['achat'] = False
-        signals['vente'] = True
+        signals['buy'] = False
+        signals['sell'] = True
 
     return signals
 
-# Fonction pour sauvegarder les données et signaux dans un fichier CSV
+# Function to save data and signals in a CSV file
 def save_to_csv(data, signals, filename):
     latest_data = data.iloc[-1].to_dict()
-    latest_data['Signal'] = 'Acheter' if signals['achat'] else 'Vendre' if signals['vente'] else 'Conserver'
+    latest_data['Signal'] = 'Buy' if signals['buy'] else 'Sell' if signals['sell'] else 'Hold'
     latest_data['Timestamp'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     df = pd.DataFrame([latest_data])
     df.to_csv(filename, mode='a', header=not pd.io.common.file_exists(filename), index=False)
 
-# Fonction principale du bot
+# Main function of the bot
 def trading_bot():
     filename = f"bot1_{datetime.now().strftime('%Y-%m-%d')}.csv"
     
@@ -86,18 +86,18 @@ def trading_bot():
         data = get_data_with_indicators(symbol)
         signals = generate_signals(data)
 
-        if signals['achat']:
-            print(f"{datetime.now()}: Signal d'achat pour {symbol}")
-        elif signals['vente']:
-            print(f"{datetime.now()}: Signal de vente pour {symbol}")
+        if signals['buy']:
+            print(f"{datetime.now()}: Buy signal for {symbol}")
+        elif signals['sell']:
+            print(f"{datetime.now()}: Sell signal for {symbol}")
         else:
-            print(f"{datetime.now()}: Signal de conservation pour {symbol}")
+            print(f"{datetime.now()}: Hold signal for {symbol}")
 
         save_to_csv(data, signals, filename)
-        time.sleep(60)  # Attendre une minute avant la prochaine vérification
+        time.sleep(60)  # Wait one minute before the next check
 
 if __name__ == "__main__":
-    trading_bot()
+    trading_bot(
 
 # Github : https://github.com/Valouzzzz/Trading-bot
-# avoir fait la commande : pip install ta pandas yfinance datetime
+# have made the order : pip install ta pandas yfinance datetime
