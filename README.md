@@ -1,27 +1,27 @@
 # Trading Bot
 
-Ce projet est un bot de trading automatisé qui utilise des indicateurs techniques, à savoir la Moyenne Mobile Exponentielle (EMA) et la Moyenne Mobile Simple (SMA), pour prendre des décisions de trading. Le bot est codé en Python et utilise les bibliothèques `yfinance`, `pandas`, `ta`, et `datetime`.
+This project is an automated trading bot that uses technical indicators, namely Exponential Moving Average (EMA) and Simple Moving Average (SMA), to make trading decisions. The bot is coded in Python and uses the libraries `yfinance`, `pandas`, `ta`, and `datetime`.
 
 
-## Fonctionnalités
+## Features
 
-- **Récupération des données financières** : Utilisation de `yfinance` pour obtenir les données historiques du prix de action CAL.L
-  (peut etre changer a la ligne 7).
-- **Calcul des indicateurs techniques** : Utilisation des bibliothèques `pandas`, et `ta` pour calculer les EMA et SMA.
-- **Génération de signaux de trading** : Création de signaux d'achat et de vente basés sur les croisements des EMA et SMA.
-- **Enregistrement des donnes** : Les donnes sont enregistrer dans le fichier bot1_{date}.csv
-- **Exécution des trades** : Mise en œuvre de la logique de trading basée sur les signaux générés.
-
-
-## Objectifs 
-
-- **Amelioration** : rajouter de meilleur signaux pour le rendre plus fiable.
-- **Fonctionnelle** : Créer une version fonctionnelle avec du vrai argent.
+- **Recovery of financial data** : The use of `yfinance` to get historical stock price data CAL.L
+  (the action can be changed at the line 7).
+- **Calculation of technical indicators** : Using Libraries `pandas`, and `ta` to calculate the EMA and SMA.
+- **Generating trading signals** : Creation of buy and sell signals based on crosses of EMA and SMA.
+- **Data logging** : The data is saved in the file bot1_{date}.csv
+- **Execution of trades** : Implementation of trading logic based on generated signals.
 
 
-## Prérequis
+## Goals
 
-Avant de commencer, assurez-vous d'avoir installé les bibliothèques suivantes :
+- **Improvement** : add better signals to make it more reliable.
+- **Functional** : Create a working version with real money.
+
+
+## Prerequisites
+
+Before you begin, make sure you have installed the following libraries:
 
 ```bash
 pip install yfinance pandas ta datetime
