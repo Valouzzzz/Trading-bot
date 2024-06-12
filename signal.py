@@ -97,7 +97,7 @@ def trading_bot():
         time.sleep(60)  # Wait one minute before the next check
 
 if __name__ == "__main__":
-    trading_bot(
+    trading_bot()
 
 # Github : https://github.com/Valouzzzz/Trading-bot
 # have made the order : pip install ta pandas yfinance datetime
