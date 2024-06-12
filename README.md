@@ -5,7 +5,7 @@ Ce projet est un bot de trading automatisé qui utilise des indicateurs techniqu
 
 ## Fonctionnalités
 
-- **Récupération des données financières** : Utilisation de `yfinance` pour obtenir les données historiques des prix des actions.
+- **Récupération des données financières** : Utilisation de `yfinance` pour obtenir les données historiques du prix de action CAL.L (peut etre changer a la ligne 7).
 - **Calcul des indicateurs techniques** : Utilisation des bibliothèques `pandas`, et `ta` pour calculer les EMA et SMA.
 - **Génération de signaux de trading** : Création de signaux d'achat et de vente basés sur les croisements des EMA et SMA.
 - **Enregistrement des donnes** : Les donnes sont enregistrer dans le fichier bot1_{date}.csv
