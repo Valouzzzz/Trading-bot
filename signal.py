@@ -98,3 +98,6 @@ def trading_bot():
 
 if __name__ == "__main__":
     trading_bot()
+
+# Github : https://github.com/Valouzzzz/Trading-bot
+# avoir fait la commande : pip install ta pandas yfinance datetime
